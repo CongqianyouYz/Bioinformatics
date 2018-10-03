@@ -1,0 +1,11 @@
+.
+├── data
+│   ├── 1_download_srr.sh
+│   ├── to_tar
+│   └── U87MG.txt
+├── res
+│   ├── fastqc
+│   ├── RSEM
+│   └── STAR
+└── scr
+    └── qc_trim_map_count.sh
