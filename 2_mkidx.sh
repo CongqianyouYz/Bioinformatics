@@ -1,3 +1,5 @@
+perl get_iso.pl
+
 time STAR \
 --runThreadN 35 \
 --runMode genomeGenerate \
