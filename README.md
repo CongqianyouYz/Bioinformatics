@@ -1,2 +1,2 @@
-# RNA-seq
+# Bioinformatics
 RNA-seq Analysis Pipelines
