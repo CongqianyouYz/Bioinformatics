@@ -4,12 +4,12 @@ open FO, ">knownIsoforms_to_sort.txt";
 while (<FI>) {
 	chomp;
 	next if (/^#/);
-
+    
 	@line = split "\t";
 	$anno = $line[8];
 
-	($gene_id)			= $_ =~ /gene_id \"([^\"]+)\"\;/;
-	($transcript_id)	= $_ =~ /transcript_id \"([^\"]+)\"\;/;
+	($gene_id)       = $_ =~ /gene_id \"([^\"]+)\"\;/;
+	($transcript_id) = $_ =~ /transcript_id \"([^\"]+)\"\;/;
 
 	print FO "$gene_id\t$transcript_id\n";
 }
