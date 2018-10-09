@@ -8,9 +8,9 @@ fastq_phred=/home/disk/pengying/bin/fastq_phred.pl
 infer_experiment=/home/disk/pengying/tools/RSeQC-2.6.5/scripts/infer_experiment.py
 strand_test=/home/disk/pengying/rna_editing/scr/strand.sh
 
-STAR_index=/home/disk/pengying/rna_editing/data/0_anno/index/STAR
-RSEM_index=/home/disk/pengying/rna_editing/data/0_anno/index/RSEM/hg38
-RefSeq=/home/disk/pengying/rna_editing/data/0_anno/index/hg38_RefSeq.bed
+STAR_index=/home/genomewide/RNA-seq_idx/hg38/STAR
+RSEM_index=/home/genomewide/RNA-seq_idx/hg38/RSEM/hg38
+RefSeq=/home/genomewide/RNA-seq_idx/hg38/hg38_RefSeq.bed
 fastqc_res=/home/disk/pengying/project/rna-seq/star/res/fastqc
 STAR_res=/home/disk/pengying/project/rna-seq/star/res/STAR
 RSEM_res=/home/disk/pengying/project/rna-seq/star/res/RSEM
