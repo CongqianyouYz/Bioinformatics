@@ -1,0 +1,48 @@
+SRR388226 analysis start at Mon Oct 8 15:58:54 CST 2018
+	phred: 33
+	headcrop: FAIL
+	strand: 0.5
+SRR388226 done at Mon Oct 8 16:50:56 CST 2018
+
+SRR388227 analysis start at Mon Oct 8 16:50:56 CST 2018
+	phred: 33
+	headcrop: FAIL
+	strand: 0.5
+SRR388227 done at Mon Oct 8 17:51:40 CST 2018
+
+SRR388228 analysis start at Mon Oct 8 17:51:40 CST 2018
+	phred: 33
+	headcrop: FAIL
+	strand: 0.5
+SRR388228 done at Mon Oct 8 19:05:10 CST 2018
+
+SRR388229 analysis start at Mon Oct 8 19:05:10 CST 2018
+	phred: 33
+	headcrop: FAIL
+	strand: 0.5
+SRR388229 done at Mon Oct 8 20:13:16 CST 2018
+
+6.4G SRR388226_1.fastq
+5.6G SRR388226_1.fastq.map
+102M SRR388226_1.fastq.unmap
+6.4G SRR388226_2.fastq
+5.5G SRR388226_2.fastq.map
+4.5M SRR388226_2.fastq.unmap
+6.7G SRR388227_1.fastq
+5.8G SRR388227_1.fastq.map
+140M SRR388227_1.fastq.unmap
+6.7G SRR388227_2.fastq
+5.7G SRR388227_2.fastq.map
+4.5M SRR388227_2.fastq.unmap
+6.8G SRR388228_1.fastq
+6.0G SRR388228_1.fastq.map
+ 62M SRR388228_1.fastq.unmap
+6.8G SRR388228_2.fastq
+5.9G SRR388228_2.fastq.map
+4.4M SRR388228_2.fastq.unmap
+7.2G SRR388229_1.fastq
+6.4G SRR388229_1.fastq.map
+ 71M SRR388229_1.fastq.unmap
+7.2G SRR388229_2.fastq
+6.3G SRR388229_2.fastq.map
+4.7M SRR388229_2.fastq.unmap
