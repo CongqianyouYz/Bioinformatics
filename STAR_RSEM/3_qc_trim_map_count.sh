@@ -42,6 +42,7 @@ do
         else
             java -jar $trimmomatic PE -phred$phred $read1 $read2 ${read1}.map ${read1}.unmap ${read2}.map ${read2}.unmap SLIDINGWINDOW:5:20
         fi
+        
         mkdir $STAR_res/$srr/
         $STAR --runThreadN $cpu --twopassMode Basic --outSAMstrandField intronMotif --genomeDir $STAR_index --readFilesIn ${read1}.map ${read2}.map --outFileNamePrefix $STAR_res/$srr/ --outSAMtype BAM SortedByCoordinate --quantMode GeneCounts TranscriptomeSAM
 
