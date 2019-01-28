@@ -15,7 +15,7 @@ colnames(mydata) <- mysrr
 rownames(mydata) <- read.table(file, header = TRUE)$gene_id
 
 ## create CountDataSet
-type <- factor(c(rep("wt",2), rep("kd",2)))
+type <- factor(c(rep("wt",2), rep("kd",2)), levels = c("wt", "kd"))
 database <- round(as.matrix(mydata))
 cds <- newCountDataSet(database, type)
 
