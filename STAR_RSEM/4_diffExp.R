@@ -31,7 +31,8 @@ cds <- estimateDispersions(cds)
 res <- nbinomTest(cds, "wt", "kd")
 
 # ***** 3. Working without any replicates *****
-cds <- estimateDispersions(cds, method="blind", sharingMode="fit-only")
+cds <- estimateSizeFactors(cds)
+cds <- estimateDispersions(cds, method="blind", fitType = "local", sharingMode="fit-only")
 res <- nbinomTest(cds, "wt", "kd")
 
 ## summary and output
