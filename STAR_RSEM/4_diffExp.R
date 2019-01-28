@@ -39,3 +39,14 @@ res <- nbinomTest(cds, "wt", "kd")
 res <- res[order(res$padj),]
 sum(res$padj <= 0.01, na.rm=TRUE)
 write.csv(res, file="U87MG_wt_vs_kd_DESeq.csv")
+
+## plot heatmap
+myres <- filter(res, padj < 0.05, abs(log2FoldChange) > 1, !is.na(padj))
+myres <- myres[order(myres$padj),]
+this_data <- cbind(myres$baseMeanA, myres$baseMeanB)
+colnames(this_data) <- c('wt', 'kd')
+rownames(this_data) <- myres$id
+pheatmap(this_data, cluster_row = T, cluster_col = FALSE,
+         cellwidth = 20, cellheight= 10, border_color = 'grey',
+         main = "DiffExp Gene",
+         cex.main=1.2)
