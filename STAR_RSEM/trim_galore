@@ -1,0 +1,6 @@
+trim_galore=/home/disk/pengying/tools/TrimGalore-0.6.0/trim_galore
+
+read1=sample_1.fq.gz
+read2=sample_2.fq.gz
+
+$trim_galore --illumina --no_report_file --length 60 $read1 $read2
