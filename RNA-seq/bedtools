@@ -1,0 +1,8 @@
+###
+1. how many reads mapped onto lincRNA region
+###
+
+target_bed=~/rna_editing/data/append/res/STAR/gencode.v29.long_noncoding_RNAs.bed
+
+bedtools intersect -abam all.bam -b $target_bed > lnc_4.bam
+samtools flagstat lnc_4.bam >> stat_bwa.txt
