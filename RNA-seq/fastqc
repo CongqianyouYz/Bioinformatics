@@ -1,6 +1,7 @@
 cpu=6
 fastqc=/home/disk/pengying/tools/FastQC/fastqc
 fastqc_res=/home/disk/pengying/project/rna-seq/star/res/fastqc
+
 data=sample.fq.gz
 
-$fastqc $data -o $fastqc_res -t $cpu
+$fastqc -q $data -o $fastqc_res -t $cpu
