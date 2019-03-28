@@ -1,0 +1,1 @@
+cuflinks -p 6 -u -G $gtf -o ./cufflinks N2.bam
