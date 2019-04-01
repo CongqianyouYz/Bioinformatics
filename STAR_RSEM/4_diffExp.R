@@ -41,7 +41,7 @@ sum(res$padj <= 0.01, na.rm=TRUE)
 write.csv(res, file="U87MG_wt_vs_kd_DESeq.csv")
 
 ## plot heatmap
-myres <- filter(res, padj < 0.05, abs(log2FoldChange) > 1, !is.na(padj))
+myres <- res[res$padj < 0.05 & abs(res$log2FoldChange) > 1 & (!is.na(res$padj)),]
 myres <- myres[order(myres$padj),]
 this_data <- cbind(myres$baseMeanA, myres$baseMeanB)
 colnames(this_data) <- c('wt', 'kd')
