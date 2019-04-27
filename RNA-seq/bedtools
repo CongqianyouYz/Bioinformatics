@@ -6,3 +6,10 @@ target_bed=~/rna_editing/data/append/res/STAR/gencode.v29.long_noncoding_RNAs.be
 
 bedtools intersect -abam all.bam -b $target_bed > lnc_4.bam
 samtools flagstat lnc_4.bam >> stat_bwa.txt
+
+
+###
+2. get regions which overlaps anno file
+###
+bedtools intersect -a SPRINT_identified_all.res -b RefSeq_cds.bed > r.cds
+bedtools intersect -a SPRINT_identified_all.res -b RefSeq_all.bed -v > r.intergenic   # no overlaps
