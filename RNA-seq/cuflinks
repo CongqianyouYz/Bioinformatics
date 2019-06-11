@@ -1,1 +1,3 @@
-cuflinks -p 6 -u -G $gtf -o ./cufflinks N2.bam
+gtf=/home/genomewide/annotation/hg38/Homo_sapiens.GRCh38.88.chr.gtf
+
+cufflinks -p 20 -u -G $gtf -o ${dir}/cufflinks ${dir}/accepted_hits.bam
