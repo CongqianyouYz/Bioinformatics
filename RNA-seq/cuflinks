@@ -5,3 +5,5 @@ gtf=/home/genomewide/annotation/hg38/Homo_sapiens.GRCh38.88.chr.gtf
 cufflinks -p 20 -u -G $gtf -o ${dir}/cufflinks ${dir}/accepted_hits.bam
 
 cuffmerge -g $gtf -s $ref -p 20 assemblies.txt
+
+cuffdiff -o diff_out -p 20 -L CASE,CONTROL -u merged_asm/merged.gtf $case1,$case2,$case2 $ctrl1,$ctrl2,$ctrl3
