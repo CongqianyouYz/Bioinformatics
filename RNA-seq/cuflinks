@@ -1,3 +1,7 @@
+ref=/home/genomewide/refgenome/hg38/hg38.fa
 gtf=/home/genomewide/annotation/hg38/Homo_sapiens.GRCh38.88.chr.gtf
 
+
 cufflinks -p 20 -u -G $gtf -o ${dir}/cufflinks ${dir}/accepted_hits.bam
+
+cuffmerge -g $gtf -s $ref -p 20 assemblies.txt
