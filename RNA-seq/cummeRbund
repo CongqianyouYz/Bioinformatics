@@ -1,0 +1,36 @@
+setwd("/Users/pengying/work/0_tianlab/CAEBV/res/0612_cuffdiff/diff_out")
+library(cummeRbund)
+
+cuff <- readCufflinks()
+diffGeneIDs <- getSig(cuff, level="genes", alpha=0.05); length(diffGeneIDs)
+diffGenes<-getGenes(cuff, diffGeneIDs)
+
+#gene_short_name values can be retrieved from the CuffGeneSet
+names <- featureNames(diffGenes)
+row.names(names)=names$tracking_id
+diffGenesNames <- as.matrix(names)
+diffGenesNames <- diffGenesNames[,-1]
+
+# get the data for the significant genes
+diffGenesData <- diffData(diffGenes)
+row.names(diffGenesData) = diffGenesData$gene_id
+diffGenesData <- diffGenesData[,-1]
+
+# merge the two matrices by row names
+diffGenesOutput <- merge(diffGenesNames, diffGenesData, by="row.names")
+colnames(diffGenesOutput)[1] <- "gene_id"
+colnames(diffGenesOutput)[2] <- "SYMBOL"
+diffGenesOutput$state[diffGenesOutput$value_1 < diffGenesOutput$value_2] <- "down"
+diffGenesOutput$state[diffGenesOutput$value_1 > diffGenesOutput$value_2] <- "up"
+head(diffGenesOutput)
+
+write.table(diffGenesOutput, '../diff_genes.txt', sep='\t',
+            row.names = F, col.names = T, quote = F)
+
+
+# Create a volcano plot to inspect differentially expressed genes
+# v <- csVolcanoMatrix(genes(cuff_data)); v
+# v <- csVolcano(cuff_data@genes, 'CAEBV', 'CONTROL'); v
+# Plot expression levels for genes of interest with bar plots
+mygene<- getGene(cuff, 'ADARB2')  # ADAR, ADARB1, ADARB2
+expressionBarplot(mygene)
