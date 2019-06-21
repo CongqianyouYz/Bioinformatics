@@ -5,7 +5,7 @@ cuff <- readCufflinks()
 diffGeneIDs <- getSig(cuff, level="genes", alpha=0.05); length(diffGeneIDs)
 diffGenes<-getGenes(cuff, diffGeneIDs)
 
-#gene_short_name values can be retrieved from the CuffGeneSet
+# gene_short_name values can be retrieved from the CuffGeneSet
 names <- featureNames(diffGenes)
 row.names(names)=names$tracking_id
 diffGenesNames <- as.matrix(names)
