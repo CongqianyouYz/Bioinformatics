@@ -1,0 +1,51 @@
+setwd("/Users/pengying/work/0_tianlab/CAEBV/res/0612_cuffdiff")
+library(clusterProfiler)
+library(org.Hs.eg.db)
+library(pathview)
+library(dplyr)
+
+data <- read.table("diff_genes.txt", header = T); head(data)
+test = bitr(data$SYMBOL, fromType="SYMBOL", toType=c("ENTREZID"), OrgDb="org.Hs.eg.db"); head(test)
+
+# ******************** 1. GO Enrichment ********************
+ego <- enrichGO(gene = test$ENTREZID, OrgDb = org.Hs.eg.db, ont = "ALL", readable = TRUE)
+dim(ego); table(ego$ONTOLOGY)
+
+barplot(ego, showCategory=20, title = "Go Enrichment")
+summary(ego)$Description
+dotplot(ego, showCategory=20, title="Go Enrichment: dot")
+cnetplot(ego, showCategory = 20)
+
+
+# ******************** 2. KEGG Enrichment ********************
+kk <- enrichKEGG(gene = test$ENTREZID); dim(kk)
+dotplot(kk, title="Enrichment KEGG_dot", showCategory=dim(kk)[1])
+summary(kk)$Description
+
+
+# ******************** 3. GSEA ********************
+test = bitr(data$SYMBOL, fromType="SYMBOL", toType=c("ENTREZID"),
+            OrgDb="org.Hs.eg.db"); head(test)
+data_merge <- merge(data, test, by='SYMBOL', all=F)
+data_merge <- data_merge[!is.infinite(data_merge$log2_fold_change),]; dim(data_merge); head(data_merge)
+data_sort <- arrange(data_merge, desc(log2_fold_change)); head(data_sort)
+geneList <- data_sort$log2_fold_change
+names(geneList) = as.character(data_sort$ENTREZID); head(geneList)
+
+gmtfile <- system.file("extdata", "c5.cc.v5.0.entrez.gmt", package="clusterProfiler")
+c5 <- read.gmt(gmtfile)
+y <- GSEA(geneList, TERM2GENE=c5)
+
+
+# ******************** 4. Pathway View ********************
+gene_exp <- select(data, SYMBOL, CAEBV=value_1, NORMAL=value_2); head(gene_exp); dim(gene_exp)
+test = bitr(gene_exp$SYMBOL, fromType="SYMBOL", toType=c("ENTREZID"), OrgDb="org.Hs.eg.db")
+df <- merge(gene_exp, test, by='SYMBOL'); rownames(df) <- df$ENTREZID
+df <- df[,-4]; head(df); dim(df)
+
+pathway_id = 'hsa04630' ## hsa04064, hsa04630
+pathview(gene.data = df[, 2], pathway.id = pathway_id, species="hsa",
+         out.suffix = "caebv", kegg.native = F)
+pathview(gene.data = df[, 3], pathway.id = pathway_id, species="hsa",
+         out.suffix = "control", kegg.native = F)
+
