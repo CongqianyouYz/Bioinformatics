@@ -1,3 +1,5 @@
+bowtie2-build mm10.fa mm10
+
 cpu=6
 tophat2=/home/zhangfeng/disk/project/Cuffdiff/tools/tophat-2.1.0.Linux_x86_64/tophat2
 ref=/home/genomewide/refgenome/mm10/mm10
@@ -5,4 +7,4 @@ ref=/home/genomewide/refgenome/mm10/mm10
 read1=sample_1.fq
 read2=sample_2.fq
 
-$tophat2 -p $cpu -o ./res_dir $ref $read1 $read2
+$tophat2 -p $cpu -o ./res_dir $ref $read1,$read2
