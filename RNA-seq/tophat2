@@ -1,4 +1,4 @@
-bowtie2-build mm10.fa mm10
+bowtie2-build --large-index mm10.fa mm10
 
 cpu=6
 tophat2=/home/zhangfeng/disk/project/Cuffdiff/tools/tophat-2.1.0.Linux_x86_64/tophat2
