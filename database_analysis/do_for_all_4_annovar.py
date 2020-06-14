@@ -1,6 +1,6 @@
 import subprocess
 import multiprocessing
-import os
+import os, re
 
 with open('spe.txt') as fi:
 	for line in fi:
@@ -21,9 +21,9 @@ def Work(sprint_out_dir,a):
 			seq = line.strip().split('\t')
 			key = seq[0]+':'+seq[2]+':'+seq[3]
 			fo.write(key+'\t'+'\t'.join(d[key])+'\n')
-			if d[key][0] != 'intergenic':
+			if d[key][0] not in ['intergenic', 'downstream', 'upstream', 'upstream;downstream'] and 'ncRNA' not in d[key][0]:
 				if d[key][1] != 'NONE':
-					s_gene.add(d[key][1])
+					s_gene.add(re.sub(r'\.*', '', d[key][1]))
 	fo.close()
 	f_gene = open(sprint_out_dir+'/A_to_I.res.gene', 'w')
 	for gene in sorted(list(s_gene)):
@@ -49,4 +49,3 @@ for line in fa:
 			jobs=[]
 for p in jobs:
 	p.join()
-
