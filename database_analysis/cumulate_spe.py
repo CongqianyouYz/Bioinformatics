@@ -76,16 +76,16 @@ with open('spe.txt') as fi:
 plt.figure(figsize=(12, 8))
 plt.subplot(2,2,1)
 plt.plot(o_cumu_lst)
-plt.title('galGal5 RES')
+plt.title(spe+' RES')
 plt.subplot(2,2,2)
 plt.plot(percent)
-plt.title('galGal5 RES percent')
+plt.title(spe+' RES percent')
 plt.subplot(2,2,3)
 plt.plot(o_cumu_lst_gene)
-plt.title('galGal5 gene')
+plt.title(spe+' gene')
 plt.subplot(2,2,4)
 plt.plot(percent_gene)
-plt.title('galGal5 gene percent');
+plt.title(spe+' gene percent');
 
 plt.savefig('/home/disk/pengying/figure/cumulate_spe.'+spe+'.pdf')
 plt.show()
