@@ -5,7 +5,14 @@ import matplotlib.pyplot as plt
 if os.path.exists('log_size.txt') == False:
 	handle = sub.Popen("wc -l *sprint/A_to_I.res | sort -nr | sed 's/.*ERR/ERR/' > log_size.txt", shell=True).wait()
 if os.path.exists('log_size.gene.txt') == False:
-	andle = sub.Popen("wc -l *sprint/A_to_I.res.gene | sort -nr | sed 's/.*ERR/ERR/' > log_size.gene.txt", shell=True).wait()
+	handle = sub.Popen("wc -l *sprint/A_to_I.res.gene | sort -nr | sed 's/.*ERR/ERR/' > log_size.gene.txt", shell=True).wait()
+if os.path.exists('pool_genes') == False:
+	handle = sub.Popen('mkdir pool_genes', shell=True).wait()
+if os.path.exists('pool_sites') == False:
+	handle = sub.Popen('mkdir pool_sites', shell=True).wait()
+with open('spe.txt') as fi:
+	for line in fi:
+		spe = line.strip()
 
 pool = set()
 o_cumu_lst = []
@@ -35,6 +42,10 @@ percent = []
 for i in list(range(len(diff))):
 	percent.append(round(diff[i]/float(count[i]), 2))
 print(percent)
+fo = open('pool_sites/cumulate_spe.'+spe+'.txt', 'w')
+for site in sorted(list(pool)):
+	fo.write(site+'\n')
+fo.close()
 
 
 # --------------------------------------------------------------
@@ -66,13 +77,13 @@ percent_gene = []
 for i in list(range(len(diff))):
 	percent_gene.append(round(diff[i]/float(count[i]), 2))
 print(percent_gene)
+fo = open('pool_genes/cumulate_spe.'+spe+'.txt', 'w')
+for gene in sorted(list(pool_gene)):
+	fo.write(gene+'\n')
+fo.close()
 
 
 # --------------------------------------------------------------
-with open('spe.txt') as fi:
-	for line in fi:
-		spe = line.strip()
-
 plt.figure(figsize=(12, 8))
 plt.subplot(2,2,1)
 plt.plot(o_cumu_lst)
@@ -90,4 +101,3 @@ plt.title(spe+' gene percent');
 plt.savefig('/home/disk/pengying/figure/cumulate_spe.'+spe+'.pdf')
 plt.show()
 plt.cla()
-
