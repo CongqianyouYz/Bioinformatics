@@ -67,7 +67,7 @@ for tissue, d_dev in d.items():
     for dev, samples in d_dev.items():
         l_count = []
         for sample in samples:
-            sample_cnt, sample_name = system_call('wc -l '+sample+'.fastq.sprint/A_to_I.res').split(' ')
+            sample_cnt, sample_name = system_call('wc -l '+sample+'.fastq.sprint/ALL_A_to_I.el').split(' ')
             _, sample_reads = system_call('grep ^SN '+sample+'.fastq.sprint/snvBAMdir/all_combined.zz.sorted.bam.stats | cut -f 2- | grep -w "reads mapped:"').split('\t')
             l_count.append(1000000 * int(sample_cnt) / float(sample_reads))
         d_count[spe+'.'+dev] = mean(l_count)
