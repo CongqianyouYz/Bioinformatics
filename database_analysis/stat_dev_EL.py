@@ -58,38 +58,38 @@ with open('/home/disk/pengying/data/formeta/order/order.'+spe) as fi:
 
 o_dict = {}
 for tissue, d_dev in d.items():
-	print(tissue)
-	d_EL = {}
-	for dev, samples in d_dev.items():
-		l_ad = []
-		l_dp = []
-		for sample in samples:
-			with open(sample+'.fastq.sprint/A_to_I.res') as fi:
-				for line in fi:
-					seq = line.strip().split('\t')
-					ad, dp = seq[6].split(':')
-					l_ad.append(int(ad))
-					l_dp.append(int(dp))
-		d_EL[spe+'.'+dev] = round(sum(l_ad) / float(sum(l_dp)), 2)
-	y = []
-	for x in order:
-		if x in d_EL:
-			y.append(round(d_EL[x],2))
-		else:
-			y.append(0)
-	print(y)
-	o_dict[tissue] = y
+    print(tissue)
+    d_EL = {}
+    for dev, samples in d_dev.items():
+        l_ad = []
+        l_dp = []
+        for sample in samples:
+            with open(sample+'.fastq.sprint/ALL_A_to_I.el') as fi: 
+                for line in fi: 
+                    seq = line.strip().split('\t')
+                    ad, dp = seq[3], seq[4]
+                    l_ad.append(int(ad))
+                    l_dp.append(int(dp))
+        d_EL[spe+'.'+dev] = round(sum(l_ad) / float(sum(l_dp)), 2)
+    y = []
+    for x in order:
+        if x in d_EL:
+            y.append(round(d_EL[x],2))
+        else:
+            y.append(0)
+    print(y)
+    o_dict[tissue] = y 
 
 x_lab = order
 plt.figure(figsize=(10, 18))
 i = 1 
 for k in sorted(o_dict.keys()):
-	plt.subplot(len(o_dict),1,i)
-	i += 1
-	plt.bar(x_lab,o_dict[k])
-	plt.xticks([])
-	plt.ylabel('AEI')
-	plt.title(k)
+    plt.subplot(len(o_dict),1,i)
+    i += 1
+    plt.bar(x_lab,o_dict[k])
+    plt.xticks([])
+    plt.ylabel('EL')
+    plt.title(k)
 plt.xticks(x_lab, rotation='vertical');
 
 plt.savefig('/home/disk/pengying/figure/stat_dev_EL.'+spe+'.pdf', bbox_inches='tight')
