@@ -1,0 +1,3 @@
+ERR2576379.tophat/cufflinks/transcripts.gtf
+ERR2576380.tophat/cufflinks/transcripts.gtf
+ERR2576381.tophat/cufflinks/transcripts.gtf
